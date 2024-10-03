@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" strict="true">
+    <Properties>
+<!--                <property name="path">/DFService/dilanka/transaction-service/</property>-->
+<!--                <property name="path">/DFService/dilanka/transaction-service/</property>-->
+<!--        <property name="path">D:/Dilaog Projects/employee_management_system_service/</property>-->
+<!--        <property name="path">C:/DilaogProjects/employee_management_system_service/</property>-->
+        <property name="path">/</property>
+<!--        <property name="path">/</property>-->
+    </Properties>
+    <Appenders>
+
+        <Console type="Console" name="STDOUT" target="SYSTEM_OUT">
+            <Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss} [%X{txnId}] %-5p %c{1}:%L - %m%n"/>
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+        </Console>
+
+        <Appender type="rollingFile" name="debugFile" fileName="${path}logs/debug/debug.log"
+                  filePattern="${path}logs/debug/debug.%d{dd-MMM-yyyy}.log" ignoreExceptions="false">
+            <Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss} [%X{txnId}] %-5p %c{1}:%L - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="300"/>
+        </Appender>
+
+        <Appender type="rollingFile" name="errorFile" fileName="${path}logs/error/error.log"
+                  filePattern="${path}logs/error/error.%d{dd-MMM-yyyy}.log" ignoreExceptions="false">
+            <Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss} [%X{txnId}] %-5p %c{1}:%L - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="300"/>
+        </Appender>
+
+        <Appender type="rollingFile" name="infoFile" fileName="${path}logs/info/info.log"
+                  filePattern="${path}logs/info/info.%d{dd-MMM-yyyy}.log" ignoreExceptions="false">
+            <Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss} [%X{txnId}] %-5p %c{1}:%L - %m%n"/>
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/><!-- for writing only INFO Logs-->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="300"/>
+        </Appender>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="debug">
+            <appender-ref ref="STDOUT" level="info"/>
+        </Root>
+
+        <logger name="com.dialogfinance" level="debug">
+            <appender-ref ref="errorFile" level="error"/>
+            <appender-ref ref="debugFile" level="debug"/>
+            <appender-ref ref="infoFile" level="off"/>
+        </logger>
+
+    </Loggers>
+
+</Configuration>
