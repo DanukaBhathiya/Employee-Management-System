@@ -3,6 +3,8 @@ package com.paymedia.employeemanagementsystemservice.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -10,7 +12,10 @@ import java.util.List;
  * @author Danuka_700488
  * @date
  **/
+@Setter
+@Getter
 @Entity
+@Table(name = "department")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
