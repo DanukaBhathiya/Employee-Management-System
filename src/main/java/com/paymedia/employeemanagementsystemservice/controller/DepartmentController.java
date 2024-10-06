@@ -2,13 +2,14 @@ package com.paymedia.employeemanagementsystemservice.controller;
 
 import com.paymedia.employeemanagementsystemservice.entity.Department;
 import com.paymedia.employeemanagementsystemservice.service.DepartmentService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/departments")

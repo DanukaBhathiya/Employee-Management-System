@@ -1,15 +1,23 @@
 package com.paymedia.employeemanagementsystemservice.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
- * @author Danuka_700488
- * @date
+ * @author Danuka
  **/
 @Setter
 @Getter
@@ -38,6 +46,7 @@ public class Employee {
     private String phone;
 
     @OneToOne
+    @JsonBackReference // This prevents infinite recursion
     private Department department;
 
 }

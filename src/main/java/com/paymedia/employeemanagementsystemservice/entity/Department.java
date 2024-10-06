@@ -1,16 +1,23 @@
 package com.paymedia.employeemanagementsystemservice.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
- * @author Danuka_700488
- * @date
+ * @author Danuka
  **/
 @Setter
 @Getter
@@ -27,6 +34,7 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department")
+    @JsonManagedReference
     private List<Employee> employees;
 
     public Long getId() {
